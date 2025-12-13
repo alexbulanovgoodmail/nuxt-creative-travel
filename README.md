@@ -1,3 +1,5 @@
+![Превью сайта](https://github.com/alexbulanovgoodmail/nuxt-creative-travel/blob/main/preview.jpg?raw=true)
+
 # Nuxt Creative Travel
 
 Проект на Nuxt 4 с современным фронтенд-стеком, линтингом, форматированием кода и поддержкой mock API через OpenAPI.
