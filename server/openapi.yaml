@@ -1,0 +1,997 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Travel Blog APIs Definition
+  description: |
+    ### API блога о путешествиях
+
+tags:
+  - name: Layout
+    description: Эндпоинты для работы с макетом
+  - name: Home
+    description: Эндпоинты для главной страницы
+  - name: Articles
+    description: Эндпоинты для страницы статей
+  - name: About
+    description: Эндпоинты для страницы о нас
+
+servers:
+  - url: http://localhost:4010
+    description: Локальный мок-сервер
+
+paths:
+  /api/layout/:
+    get:
+      tags:
+        - Layout
+      summary: Получить данные макета
+      description: Возвращает данные макета
+      responses:
+        '200':
+          description: Успешный ответ. Содержит данные макета.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LayoutData'
+              example:
+                navigations:
+                  - id: '1'
+                    link:
+                      label: 'Home'
+                      to: '/'
+                  - id: '2'
+                    link:
+                      label: 'Articles'
+                      to: '/articles/'
+                  - id: '3'
+                    link:
+                      label: 'About'
+                      to: '/about/'
+                socials:
+                  - id: '1'
+                    link:
+                      label: 'Instagram'
+                      to: 'https://instagram.com/yourpage'
+                  - id: '2'
+                    link:
+                      label: 'Pinterest'
+                      to: 'https://pinterest.com/yourpage'
+                  - id: '3'
+                    link:
+                      label: 'Youtube'
+                      to: 'https://youtube.com/yourpage'
+                  - id: '4'
+                    link:
+                      label: 'Facebook'
+                      to: 'https://facebook.com/yourpage'
+                  - id: '5'
+                    link:
+                      label: 'X'
+                      to: 'https://x.com/yourpage'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/home/:
+    get:
+      tags:
+        - Home
+      summary: Получить данные главной страницы
+      description: Возвращает данные главной страницы
+      responses:
+        '200':
+          description: Успешный ответ. Содержит данные главной страницы.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HomePageData'
+              example:
+                seo:
+                  meta:
+                    title: 'Welcome to Creative Travel Blog'
+                    ogTitle: 'Welcome to Creative Travel Blog'
+                    description: 'This is the description for the main page'
+                    ogDescription: 'This is the description for the main page'
+                    ogImage: '/images/preview.jpg'
+                    twitterCard: 'summary_large_image'
+                    robots: 'noindex'
+                  H1: 'Welcome to Creative Travel Blog'
+                  content: null
+                schemaOrg:
+                  - '@context': 'https://schema.org'
+                    '@type': 'WebSite'
+                    name: 'Creative Travel Blog'
+                    url: 'https://travelblog.com/'
+                  - '@context': 'https://schema.org'
+                    '@type': 'CollectionPage'
+                    name: 'Home'
+                    mainEntityOfPage:
+                      '@type': 'WebPage'
+                      '@id': 'https://travelblog.com/'
+                breadcrumbs: []
+                cover:
+                  url: '/mocks/images/cover-01.jpg'
+                  alt: ''
+                featured:
+                  id: '8'
+                  link:
+                    label: 'Wild Camping Along Tasmania`s East Coast'
+                    to: '/articles/wild-camping-along-tasmanias-east-coast/'
+                  image:
+                    url: '/mocks/images/article-08.jpg'
+                    alt: 'A white camper truck parked on a dirt path…'
+                  title: 'Wild Camping Along Tasmania`s East Coast'
+                  subtitle: 'Featured article'
+                  createdAt: '2025-12-10T12:00:00Z'
+                stories:
+                  title: 'Latest travel stories'
+                  articles:
+                    - id: '1'
+                      link:
+                        label: 'Finding Stillness in the Hills of San Cristóbal'
+                        to: '/articles/finding-stillness-in-the-hills-of-san-cristobal/'
+                      image:
+                        url: '/mocks/images/article-01.jpg'
+                        alt: 'A woman walking toward an orange house…'
+                      title: 'Finding Stillness in the Hills of San Cristóbal'
+                      subtitle: 'October 10, 2025'
+                      createdAt: '2025-10-10T12:00:00Z'
+                    - id: '2'
+                      link:
+                        label: 'Wandering Through the Streets of Rome'
+                        to: '/articles/wandering-through-the-streets-of-rome/'
+                      image:
+                        url: '/mocks/images/article-02.jpg'
+                        alt: 'The Colosseum at sunset…'
+                      title: 'Wandering Through the Streets of Rome'
+                      subtitle: 'October 2, 2025'
+                      createdAt: '2025-10-02T12:00:00Z'
+                    - id: '3'
+                      link:
+                        label: 'Driving Across Monument Valley'
+                        to: '/articles/driving-across-monument-valley/'
+                      image:
+                        url: '/mocks/images/article-03.jpg'
+                        alt: 'Red rock butte in Monument Valley…'
+                      title: 'Driving Across Monument Valley'
+                      subtitle: 'September 17, 2025'
+                      createdAt: '2025-09-17T12:00:00Z'
+                    - id: '4'
+                      link:
+                        label: 'Walking the Terraces of Northern Vietnam'
+                        to: '/articles/walking-the-terraces-of-northern-vietnam/'
+                      image:
+                        url: '/mocks/images/article-04.jpg'
+                        alt: 'Terraced fields in Vietnam…'
+                      title: 'Walking the Terraces of Northern Vietnam'
+                      subtitle: 'September 2, 2025'
+                      createdAt: '2025-09-02T12:00:00Z'
+                upcoming:
+                  title: 'Upcoming itinerary'
+                  itineraries:
+                    - id: '101'
+                      title: 'Oaxaca, Mexico'
+                      description: 'For mole, markets, and Monte Albán'
+                      period: 'March 12 - March 25'
+                      image:
+                        url: '/mocks/images/itinerary-101.jpg'
+                        alt: 'People sitting and walking in a sunlit courtyard…'
+                    - id: '102'
+                      title: 'Rome, Italy'
+                      description: 'Evening walks and neighborhood trattorias'
+                      period: 'June 9 - June 30'
+                      image:
+                        url: '/mocks/images/itinerary-102.jpg'
+                        alt: 'Close-up view of the Colosseum in Rome…'
+                    - id: '103'
+                      title: 'Lofoten, Norway'
+                      description: 'Midnight sun, damp air, and drying cod'
+                      period: 'October 20 - October 28'
+                      image:
+                        url: '/mocks/images/itinerary-103.jpg'
+                        alt: 'Three brightly painted cabins on a snowy shoreline…'
+                    - id: '104'
+                      title: 'Kagoshima, Japan'
+                      description: 'Admire Sakurajima from the ferry'
+                      period: 'Dec 3 - Dec 21'
+                      image:
+                        url: '/mocks/images/itinerary-104.jpg'
+                        alt: 'Two people stand by a wooden railing overlooking…'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/articles/:
+    get:
+      tags:
+        - Articles
+      summary: Получить данные страницы статей
+      description: Возвращает данные страницы статей
+      parameters:
+        - name: page
+          in: query
+          description: Номер страницы
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+        - name: limit
+          in: query
+          description: Количество статей на странице
+          schema:
+            type: integer
+            default: 8
+            minimum: 1
+            maximum: 16
+        - name: sortBy
+          in: query
+          description: Поле для сортировки
+          schema:
+            type: string
+            enum: [createdAt, title]
+            default: createdAt
+        - name: order
+          in: query
+          description: Порядок сортировки
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
+      responses:
+        '200':
+          description: Успешный ответ. Содержит данные страницы статей.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticlesPageData'
+              example:
+                seo:
+                  meta:
+                    title: 'All Travel Stories'
+                    ogTitle: 'All Travel Stories - Creative Travel Blog'
+                    description: 'Discover all travel stories and adventures'
+                    ogDescription: 'Discover all travel stories and adventures'
+                    ogImage: '/images/articles-preview.jpg'
+                    twitterCard: 'summary_large_image'
+                    robots: 'index,follow'
+                  H1: 'All Travel Stories'
+                  content: null
+                schemaOrg:
+                  - '@context': 'https://schema.org'
+                    '@type': 'WebSite'
+                    name: 'Creative Travel Blog'
+                    url: 'https://travelblog.com/'
+                  - '@context': 'https://schema.org'
+                    '@type': 'CollectionPage'
+                    name: 'Articles'
+                    mainEntityOfPage:
+                      '@type': 'WebPage'
+                      '@id': 'https://travelblog.com/articles/'
+                    breadcrumb:
+                      '@type': 'BreadcrumbList'
+                      itemListElement:
+                        - '@type': 'ListItem'
+                          position: 1
+                          name: 'Home'
+                          item: 'https://travelblog.com/'
+                        - '@type': 'ListItem'
+                          position: 2
+                          name: 'Articles'
+                          item: 'https://travelblog.com/articles/'
+
+                breadcrumbs:
+                  - id: '1'
+                    link:
+                      label: 'Home'
+                      to: '/'
+                  - id: '2'
+                    link:
+                      label: 'Articles'
+                      to: '/articles/'
+                cover:
+                  url: '/mocks/images/cover-02.jpg'
+                  alt: ''
+                pageInfo:
+                  page: 1
+                  limit: 8
+                  total: 12
+                stories:
+                  title: 'All travel stories'
+                  articles:
+                    - id: '1'
+                      link:
+                        label: 'Finding Stillness in the Hills of San Cristóbal'
+                        to: '/articles/finding-stillness-in-the-hills-of-san-cristobal/'
+                      image:
+                        url: '/mocks/images/article-01.jpg'
+                        alt: 'A woman with long dark hair walks barefoot through a grassy yard toward a rustic orange house, holding a bottle of wine, with misty mountains and lush trees in the background'
+                      title: 'Finding Stillness in the Hills of San Cristóbal'
+                      subtitle: 'October 10, 2025'
+                      createdAt: '2025-10-10T12:00:00Z'
+                    - id: '2'
+                      link:
+                        label: 'Wandering Through the Streets of Rome'
+                        to: '/articles/wandering-through-the-streets-of-rome/'
+                      image:
+                        url: '/mocks/images/article-02.jpg'
+                        alt: 'A wide view of the Colosseum’s upper arches at sunset, framed by green trees against a soft blue sky in Rome, Italy'
+                      title: 'Wandering Through the Streets of Rome'
+                      subtitle: 'October 2, 2025'
+                      createdAt: '2025-10-02T14:30:00Z'
+                    - id: '3'
+                      link:
+                        label: 'Driving Across Monument Valley'
+                        to: '/articles/driving-across-monument-valley/'
+                      image:
+                        url: '/mocks/images/article-03.jpg'
+                        alt: 'A view of a red rock butte rising from the desert floor in Monument Valley, seen from a car window and side mirror during a drive across the arid landscape'
+                      title: 'Driving Across Monument Valley'
+                      subtitle: 'September 17, 2025'
+                      createdAt: '2025-09-17T09:15:00Z'
+                    - id: '4'
+                      link:
+                        label: 'Walking the Terraces of Northern Vietnam'
+                        to: '/articles/walking-the-terraces-of-northern-vietnam/'
+                      image:
+                        url: '/mocks/images/article-04.jpg'
+                        alt: 'Two women carrying large woven baskets of stone climb a dirt trail through green rice terraces in northern Vietnam'
+                      title: 'Walking the Terraces of Northern Vietnam'
+                      subtitle: 'September 2, 2025'
+                      createdAt: '2025-09-02T16:45:00Z'
+                    - id: '5'
+                      link:
+                        label: 'Admiring the Clifftops of the Lycian Coast'
+                        to: '/articles/admiring-the-clifftops-of-the-lycian-coast/'
+                      image:
+                        url: '/mocks/images/article-05.jpg'
+                        alt: 'A vintage van with open doors reveals a rack of colorful clothes, parked on a cliff edge above the sea along the Lycian Coast'
+                      title: 'Admiring the Clifftops of the Lycian Coast'
+                      subtitle: 'August 20, 2025'
+                      createdAt: '2025-08-20T11:20:00Z'
+                    - id: '6'
+                      link:
+                        label: 'Waiting by the Shores of the Red Sea'
+                        to: '/articles/waiting-by-the-shores-of-the-red-sea/'
+                      image:
+                        url: '/mocks/images/article-06.jpg'
+                        alt: 'A quiet roadside snack stand painted blue and white sits empty by the shore of the Red Sea under a pale sky, framed by palm trees and a street lamp'
+                      title: 'Waiting by the Shores of the Red Sea'
+                      subtitle: 'August 1, 2025'
+                      createdAt: '2025-08-01T18:10:00Z'
+                    - id: '7'
+                      link:
+                        label: 'Tracing Trails Through the Dolomite Highlands'
+                        to: '/articles/tracing-trails-through-the-dolomite-highlands/'
+                      image:
+                        url: '/mocks/images/article-07.jpg'
+                        alt: 'A wide alpine view of the jagged Dolomite mountains framed by pine trees, with a winding path cutting through grassy valleys below'
+                      title: 'Tracing Trails Through the Dolomite Highlands'
+                      subtitle: 'July 30, 2025'
+                      createdAt: '2025-07-30T07:45:00Z'
+                    - id: '8'
+                      link:
+                        label: 'Wild Camping Along Tasmania’s East Coast'
+                        to: '/articles/wild-camping-along-tasmanias-east-coast/'
+                      image:
+                        url: '/mocks/images/article-08.jpg'
+                        alt: 'A white camper truck parked on a dirt path along the rugged cliffs of Tasmania’s east coast, with fog rolling in over the ocean'
+                      title: 'Wild Camping Along Tasmania’s East Coast'
+                      subtitle: 'July 11, 2025'
+                      createdAt: '2025-07-11T13:25:00Z'
+
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/articles/{slug}/:
+    get:
+      tags:
+        - Articles
+      summary: Получить данные конкретной статьи
+      description: Возвращает полную статью по её slug
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          description: Уникальный идентификатор статьи (slug)
+          schema:
+            type: string
+            example: 'wild-camping-along-tasmanias-east-coast'
+      responses:
+        '200':
+          description: Успешный ответ. Содержит полную статью.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticlePageData'
+              example:
+                seo:
+                  meta:
+                    title: 'Wild Camping Along Tasmania’s East Coast'
+                    ogTitle: 'Wild Camping Along Tasmania’s East Coast - Creative Travel Blog'
+                    description: 'Camping adventures along the rugged east coast of Tasmania, with fog rolling over ocean cliffs.'
+                    ogDescription: 'Camping adventures along the rugged east coast of Tasmania, with fog rolling over ocean cliffs.'
+                    ogImage: '/mocks/images/article-08.jpg'
+                    twitterCard: 'summary_large_image'
+                    robots: 'index,follow'
+                  H1: 'Wild Camping Along Tasmania’s East Coast'
+                  content: null
+                schemaOrg:
+                  - '@context': 'https://schema.org'
+                    '@type': 'WebSite'
+                    name: 'Creative Travel Blog'
+                    url: 'https://travelblog.com/'
+                  - '@context': 'https://schema.org'
+                    '@type': 'Article'
+                    headline: 'Wild Camping Along Tasmania’s East Coast'
+                    datePublished: '2025-07-11T13:25:00Z'
+                    dateModified: '2025-07-11T13:25:00Z'
+                    author:
+                      '@type': 'Person'
+                      name: 'Naiá'
+                    image:
+                      - 'https://travelblog.com/mocks/images/article-08.jpg'
+                    mainEntityOfPage:
+                      '@type': 'WebPage'
+                      '@id': 'https://travelblog.com/articles/wild-camping-along-tasmanias-east-coast/'
+                    breadcrumb:
+                      '@type': 'BreadcrumbList'
+                      itemListElement:
+                        - '@type': 'ListItem'
+                          position: 1
+                          name: 'Home'
+                          item: 'https://travelblog.com/'
+                        - '@type': 'ListItem'
+                          position: 2
+                          name: 'Articles'
+                          item: 'https://travelblog.com/articles/'
+                        - '@type': 'ListItem'
+                          position: 3
+                          name: 'Wild Camping Along Tasmania’s East Coast'
+                          item: 'https://travelblog.com/articles/wild-camping-along-tasmanias-east-coast/'
+                breadcrumbs:
+                  - id: '1'
+                    link:
+                      label: 'Home'
+                      to: '/'
+                  - id: '2'
+                    link:
+                      label: 'Articles'
+                      to: '/articles/'
+                  - id: '3'
+                    link:
+                      label: 'Wild Camping Along Tasmania’s East Coast'
+                      to: '/articles/wild-camping-along-tasmanias-east-coast/'
+                cover:
+                  url: '/mocks/images/article-08.jpg'
+                  alt: 'A white camper truck parked on a dirt path along the rugged cliffs of Tasmania’s east coast, with fog rolling in over the ocean'
+                article:
+                  id: '8'
+                  title: 'Wild Camping Along Tasmania’s East Coast'
+                  subtitle: 'July 11, 2025'
+                  location: 'Australia'
+                  createdAt: '2025-07-11T13:25:00Z'
+                  updatedAt: '2025-07-11T13:25:00Z'
+                  content: |
+                    <p>The coast of Tasmania doesn’t care where you came from. It just opens up—wild, wind-lashed, and utterly indifferent. I parked the camper by a cliff’s edge one afternoon, unsure if I’d stay one night or three. I stayed four.</p>
+
+                    <img src="/mocks/images/img-01.jpg" alt="White camper van parked on cliff edge at dawn, fog rolling over Tasman Sea">
+
+                    <p>Each morning I woke to the sound of the ocean testing the shoreline. Mornings were fog-wrapped and quiet. Evenings came on soft and slow, like a tide that didn’t know whether to rise or stay. I cooked with whatever I had. Slept with the windows cracked. Let the wind be my companion.</p>
+
+                    <p>There’s a kind of clarity that only comes from solitude and sea air. I didn’t write much. I didn’t need to. The days were filled with the kind of small moments that don’t make it into postcards—lighting a match with cold fingers, watching sea birds fly in formation, rinsing dishes in a cold creek.</p>
+
+                    <img src="/mocks/images/img-02.jpg" alt="Camp stove brewing coffee with ocean waves crashing below">
+
+                    <p>Camping out there didn’t feel like an escape. It felt like a return. To something quieter, rougher, more real.</p>
+                stories:
+                  title: 'Latest travel stories'
+                  articles:
+                    - id: '1'
+                      link:
+                        label: 'Finding Stillness in the Hills of San Cristóbal'
+                        to: '/articles/finding-stillness-in-the-hills-of-san-cristobal/'
+                      image:
+                        url: '/mocks/images/article-01.jpg'
+                        alt: 'A woman walking toward an orange house…'
+                      title: 'Finding Stillness in the Hills of San Cristóbal'
+                      subtitle: 'October 10, 2025'
+                      createdAt: '2025-10-10T12:00:00Z'
+                    - id: '2'
+                      link:
+                        label: 'Wandering Through the Streets of Rome'
+                        to: '/articles/wandering-through-the-streets-of-rome/'
+                      image:
+                        url: '/mocks/images/article-02.jpg'
+                        alt: 'The Colosseum at sunset…'
+                      title: 'Wandering Through the Streets of Rome'
+                      subtitle: 'October 2, 2025'
+                      createdAt: '2025-10-02T14:30:00Z'
+                    - id: '3'
+                      link:
+                        label: 'Driving Across Monument Valley'
+                        to: '/articles/driving-across-monument-valley/'
+                      image:
+                        url: '/mocks/images/article-03.jpg'
+                        alt: 'Red rock butte in Monument Valley…'
+                      title: 'Driving Across Monument Valley'
+                      subtitle: 'September 17, 2025'
+                      createdAt: '2025-09-17T09:15:00Z'
+                    - id: '4'
+                      link:
+                        label: 'Walking the Terraces of Northern Vietnam'
+                        to: '/articles/walking-the-terraces-of-northern-vietnam/'
+                      image:
+                        url: '/mocks/images/article-04.jpg'
+                        alt: 'Terraced fields in Vietnam…'
+                      title: 'Walking the Terraces of Northern Vietnam'
+                      subtitle: 'September 2, 2025'
+                      createdAt: '2025-09-02T16:45:00Z'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/about/:
+    get:
+      tags:
+        - About
+      summary: Получить данные страницы о нас
+      description: Возвращает данные страницы о нас
+      responses:
+        '200':
+          description: Успешный ответ. Содержит данные страницы о нас.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AboutPageData'
+              example:
+                seo:
+                  meta:
+                    title: 'About Creative Travel Blog'
+                    ogTitle: 'About Creative Travel Blog'
+                    description: 'Learn more about the author and the story behind this travel blog.'
+                    ogDescription: 'Learn more about the author and the story behind this travel blog.'
+                    ogImage: '/images/about-preview.jpg'
+                    twitterCard: 'summary_large_image'
+                    robots: 'index,follow'
+                  H1: 'About this blog'
+                  content: null
+                schemaOrg:
+                  - '@context': 'https://schema.org'
+                    '@type': 'AboutPage'
+                    name: 'About'
+                    mainEntityOfPage:
+                      '@type': 'WebPage'
+                      '@id': 'https://travelblog.com/about/'
+                    breadcrumb:
+                      '@type': 'BreadcrumbList'
+                      itemListElement:
+                        - '@type': 'ListItem'
+                          position: 1
+                          name: 'Home'
+                          item: 'https://travelblog.com/'
+                        - '@type': 'ListItem'
+                          position: 2
+                          name: 'About'
+                          item: 'https://travelblog.com/about/'
+
+                breadcrumbs:
+                  - id: '1'
+                    link:
+                      label: 'Home'
+                      to: '/'
+                  - id: '2'
+                    link:
+                      label: 'About'
+                      to: '/about/'
+                cover:
+                  url: '/mocks/images/cover-03.jpg'
+                  alt: 'Double exposure portrait of a woman in profile, set against a sky filled with soft clouds'
+                info:
+                  - id: '1'
+                    title: 'About'
+                    text: "<p>Hi, I'm Naiá — a slow traveler with a soft spot for train stations, street snacks, and places that don`t make the guidebooks. The Roam Report is my way of remembering: the long walks, wrong turns, and all the quiet in-between moments that make a place feel real.</p><p>Currently roaming. Eventually home.</p>"
+                  - id: '2'
+                    title: 'Contact'
+                    text: '<p>Want to collaborate, pitch a trip, or say hi? Send a note to <a href="mailto:naia@theroamreport.com">naia@theroamreport.com</a> — I check it more often than I check train times.</p>'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  responses:
+    BadRequest:
+      description: Некорректный запрос. Проверьте параметры и тело запроса.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 400
+              message:
+                type: string
+                example: 'Invalid query parameter'
+              details:
+                type: string
+                nullable: true
+                example: "Parameter 'id' must be an integer"
+    NotFound:
+      description: Данные не найдены.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 404
+              message:
+                type: string
+                example: 'Data not found'
+              details:
+                type: string
+                nullable: true
+                example: 'Article with id 123 does not exist'
+    InternalServerError:
+      description: Внутренняя ошибка сервера.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 500
+              message:
+                type: string
+                example: 'Internal server error'
+              details:
+                type: string
+                nullable: true
+                example: 'Database connection failed'
+
+  schemas:
+    Media:
+      type: object
+      description: Модель медиа ресурса
+      properties:
+        url:
+          type: string
+        alt:
+          type: string
+      required:
+        - url
+        - alt
+
+    Link:
+      type: object
+      properties:
+        label:
+          type: string
+        to:
+          type: string
+
+    Breadcrumbs:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          link:
+            $ref: '#/components/schemas/Link'
+        required:
+          - id
+          - link
+
+    ArticlePreview:
+      type: object
+      properties:
+        id:
+          type: string
+        link:
+          $ref: '#/components/schemas/Link'
+        image:
+          $ref: '#/components/schemas/Media'
+        title:
+          type: string
+        subtitle:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - link
+        - image
+        - title
+        - createdAt
+
+    ItineraryPreview:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        period:
+          type: string
+        image:
+          $ref: '#/components/schemas/Media'
+      required:
+        - id
+        - title
+        - description
+        - period
+        - image
+
+    Meta:
+      type: object
+      properties:
+        title:
+          type: string
+        ogTitle:
+          type: string
+        description:
+          type: string
+        ogDescription:
+          type: string
+        ogImage:
+          type: string
+        twitterCard:
+          type: string
+        robots:
+          type: string
+
+    SEO:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        H1:
+          type: string
+        content:
+          type: string
+          nullable: true
+      required:
+        - meta
+        - H1
+
+    LayoutData:
+      type: object
+      properties:
+        navigations:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              link:
+                $ref: '#/components/schemas/Link'
+            required:
+              - id
+              - link
+        socials:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              link:
+                $ref: '#/components/schemas/Link'
+            required:
+              - id
+              - link
+      required:
+        - navigations
+        - socials
+
+    SchemaOrg:
+      type: array
+      items:
+        type: object
+        additionalProperties: true
+
+    HomePageData:
+      type: object
+      properties:
+        seo:
+          $ref: '#/components/schemas/SEO'
+        schemaOrg:
+          $ref: '#/components/schemas/SchemaOrg'
+        breadcrumbs:
+          $ref: '#/components/schemas/Breadcrumbs'
+        cover:
+          $ref: '#/components/schemas/Media'
+        featured:
+          $ref: '#/components/schemas/ArticlePreview'
+        stories:
+          type: object
+          properties:
+            title:
+              type: string
+            articles:
+              type: array
+              items:
+                $ref: '#/components/schemas/ArticlePreview'
+          required:
+            - title
+            - articles
+        upcoming:
+          type: object
+          properties:
+            title:
+              type: string
+            itineraries:
+              type: array
+              items:
+                $ref: '#/components/schemas/ItineraryPreview'
+          required:
+            - title
+            - itineraries
+      required:
+        - seo
+        - schemaOrg
+        - breadcrumbs
+        - cover
+        - featured
+        - stories
+        - upcoming
+
+    ArticlesPageData:
+      type: object
+      properties:
+        seo:
+          $ref: '#/components/schemas/SEO'
+        schemaOrg:
+          $ref: '#/components/schemas/SchemaOrg'
+        breadcrumbs:
+          $ref: '#/components/schemas/Breadcrumbs'
+        cover:
+          $ref: '#/components/schemas/Media'
+        pageInfo:
+          type: object
+          properties:
+            page:
+              type: integer
+            limit:
+              type: integer
+            total:
+              type: integer
+          required:
+            - page
+            - limit
+            - total
+        stories:
+          type: object
+          properties:
+            title:
+              type: string
+            articles:
+              type: array
+              items:
+                $ref: '#/components/schemas/ArticlePreview'
+          required:
+            - title
+            - articles
+      required:
+        - seo
+        - schemaOrg
+        - breadcrumbs
+        - cover
+        - pageInfo
+        - stories
+
+    ArticlePageData:
+      type: object
+      properties:
+        seo:
+          $ref: '#/components/schemas/SEO'
+        schemaOrg:
+          $ref: '#/components/schemas/SchemaOrg'
+        breadcrumbs:
+          $ref: '#/components/schemas/Breadcrumbs'
+        cover:
+          $ref: '#/components/schemas/Media'
+        article:
+          type: object
+          properties:
+            id:
+              type: string
+            title:
+              type: string
+            subtitle:
+              type: string
+            location:
+              type: string
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+            content:
+              type: string
+              description: HTML контент статьи с встроенными изображениями
+          required:
+            - id
+            - title
+            - subtitle
+            - createdAt
+            - updatedAt
+            - content
+        stories:
+          type: object
+          properties:
+            title:
+              type: string
+            articles:
+              type: array
+              items:
+                $ref: '#/components/schemas/ArticlePreview'
+              minItems: 2
+              maxItems: 4
+          required:
+            - title
+            - articles
+      required:
+        - seo
+        - schemaOrg
+        - breadcrumbs
+        - cover
+        - article
+        - stories
+
+    AboutPageData:
+      type: object
+      properties:
+        seo:
+          $ref: '#/components/schemas/SEO'
+        schemaOrg:
+          $ref: '#/components/schemas/SchemaOrg'
+        breadcrumbs:
+          $ref: '#/components/schemas/Breadcrumbs'
+        cover:
+          $ref: '#/components/schemas/Media'
+        info:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              text:
+                type: string
+            required:
+              - id
+              - title
+              - text
+      required:
+        - seo
+        - schemaOrg
+        - breadcrumbs
+        - cover
+        - info

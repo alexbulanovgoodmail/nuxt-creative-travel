@@ -1,0 +1,255 @@
+@use '~/assets/scss/general/variables' as *;
+
+@mixin line-clamp($lines: 1) {
+	@if $lines <= 1 {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	} @else {
+		display: -webkit-box;
+		overflow: hidden;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: $lines;
+		text-overflow: ellipsis;
+	}
+}
+
+/* typography */
+
+@mixin font-display {
+	font-family: 'Xanh Mono', 'Times New Roman', serif;
+}
+
+@mixin font-heading {
+	font-family: 'Gasoek One', Arial, sans-serif;
+}
+
+@mixin font-base {
+	font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+}
+
+@mixin typo-display {
+	@include font-display;
+
+	font-size: 72px;
+	font-weight: 400;
+	line-height: 120%;
+
+	@media screen and (min-width: $md) {
+		font-size: 104px;
+		line-height: 120%;
+	}
+
+	@media screen and (min-width: $lg) {
+		font-size: 104px;
+		line-height: 120%;
+	}
+}
+
+@mixin typo-caption {
+	@include font-base;
+
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 120%;
+
+	@media screen and (min-width: $md) {
+		font-size: 14px;
+		line-height: 120%;
+	}
+
+	@media screen and (min-width: $lg) {
+		font-size: 14px;
+		line-height: 120%;
+	}
+}
+
+@mixin typo-nav-link {
+	@include font-base;
+
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 120%;
+	text-decoration: none;
+
+	@media screen and (min-width: $md) {
+		font-size: 14px;
+		line-height: 120%;
+	}
+
+	@media screen and (min-width: $lg) {
+		font-size: 14px;
+		line-height: 120%;
+	}
+}
+
+@mixin typo-text-link {
+	@include font-base;
+
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 120%;
+	text-decoration: underline;
+	text-underline-offset: 4px;
+	color: inherit;
+	transition: $transition-duration $transition-function;
+
+	&:hover,
+	&:focus-visible {
+		opacity: 0.5;
+	}
+
+	@media screen and (min-width: $md) {
+		font-size: 16px;
+		line-height: 120%;
+	}
+
+	@media screen and (min-width: $lg) {
+		font-size: 16px;
+		line-height: 120%;
+	}
+}
+
+@mixin typo-header-1 {
+	@include font-heading;
+
+	font-size: 56px;
+	font-weight: 400;
+	line-height: 90%;
+
+	@media screen and (min-width: $md) {
+		font-size: 80px;
+		line-height: 90%;
+	}
+
+	@media screen and (min-width: $lg) {
+		font-size: 80px;
+		line-height: 90%;
+	}
+}
+
+@mixin typo-header-2 {
+	@include font-base;
+
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 120%;
+
+	@media screen and (min-width: $md) {
+		font-size: 48px;
+		line-height: 120%;
+	}
+
+	@media screen and (min-width: $lg) {
+		font-size: 48px;
+		line-height: 120%;
+	}
+}
+
+@mixin typo-header-3 {
+	@include font-base;
+
+	font-size: 22px;
+	font-weight: 600;
+	line-height: 120%;
+
+	@media screen and (min-width: $md) {
+		font-size: 24px;
+		line-height: 120%;
+	}
+
+	@media screen and (min-width: $lg) {
+		font-size: 24px;
+		line-height: 120%;
+	}
+}
+
+@mixin typo-header-4 {
+	@include font-base;
+
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 120%;
+
+	@media screen and (min-width: $md) {
+		font-size: 20px;
+		line-height: 120%;
+	}
+
+	@media screen and (min-width: $lg) {
+		font-size: 20px;
+		line-height: 120%;
+	}
+}
+
+@mixin typo-paragraph-1-bold {
+	@include font-base;
+
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 150%;
+
+	@media screen and (min-width: $md) {
+		font-size: 20px;
+		line-height: 150%;
+	}
+
+	@media screen and (min-width: $lg) {
+		font-size: 20px;
+		line-height: 150%;
+	}
+}
+
+@mixin typo-paragraph-1 {
+	@include font-base;
+
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 150%;
+
+	@media screen and (min-width: $md) {
+		font-size: 20px;
+		line-height: 150%;
+	}
+
+	@media screen and (min-width: $lg) {
+		font-size: 20px;
+		line-height: 150%;
+	}
+}
+
+@mixin typo-paragraph-2 {
+	@include font-base;
+
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 120%;
+
+	@media screen and (min-width: $md) {
+		font-size: 20px;
+		line-height: 120%;
+	}
+
+	@media screen and (min-width: $lg) {
+		font-size: 20px;
+		line-height: 120%;
+	}
+}
+
+@mixin typo-paragraph-3 {
+	@include font-base;
+
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 120%;
+
+	@media screen and (min-width: $md) {
+		font-size: 16px;
+		line-height: 120%;
+	}
+
+	@media screen and (min-width: $lg) {
+		font-size: 16px;
+		line-height: 120%;
+	}
+}

@@ -1,0 +1,41 @@
+/* user-content */
+
+@use '@/assets/scss/general/variables' as *;
+@use '@/assets/scss/abstracts/mixins' as *;
+
+.user-content {
+	p {
+		@include typo-paragraph-1;
+	}
+
+	p:not(:first-child) {
+		margin-top: 24px;
+	}
+
+	p:not(:last-child) {
+		margin-bottom: 24px;
+	}
+
+	img {
+		width: 100%;
+		height: auto;
+	}
+
+	img:not(:first-child) {
+		margin-top: 40px;
+	}
+
+	img:not(:last-child) {
+		margin-bottom: 40px;
+	}
+
+	a {
+		color: inherit;
+		transition: $transition-duration $transition-function;
+
+		&:hover,
+		&:focus-visible {
+			opacity: 0.5;
+		}
+	}
+}

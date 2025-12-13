@@ -1,0 +1,39 @@
+/* scaffolding */
+
+@use '~/assets/scss/general/variables' as *;
+@use '~/assets/scss/abstracts/mixins' as *;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,
+body,
+/* stylelint-disable-next-line selector-id-pattern */
+body > #__nuxt {
+	height: 100%;
+}
+
+body {
+	@include typo-paragraph-1;
+}
+
+.visually-hidden {
+	position: absolute;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	border: 0;
+	margin: -1px;
+	clip-path: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+.container {
+	margin: 0 auto;
+	width: 100%;
+	padding: 0 20px;
+}
