@@ -1,10 +1,13 @@
-export default defineEventHandler(async event => {
-	const config = useRuntimeConfig()
-	const baseUrl = config.public.baseUrl
+import { getLayout } from '~~/providers/layout/index.get'
 
-	const response: any = await $fetch(`${baseUrl}/api/layout/`, {
-		headers: event.headers
-	})
-
-	return response
+export default defineEventHandler(async () => {
+	try {
+		return await getLayout()
+	} catch (errors: any) {
+		throw createError({
+			statusCode: 500,
+			statusMessage: errors[0]?.message || 'Internal Server Error',
+			fatal: true
+		})
+	}
 })
