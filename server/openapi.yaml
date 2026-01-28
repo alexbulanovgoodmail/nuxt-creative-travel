@@ -629,8 +629,9 @@ components:
                 type: string
                 example: 'Invalid query parameter'
               details:
-                type: string
-                nullable: true
+                type:
+                  - string
+                  - 'null'
                 example: "Parameter 'id' must be an integer"
     NotFound:
       description: Данные не найдены.
@@ -646,8 +647,9 @@ components:
                 type: string
                 example: 'Data not found'
               details:
-                type: string
-                nullable: true
+                type:
+                  - string
+                  - 'null'
                 example: 'Article with id 123 does not exist'
     InternalServerError:
       description: Внутренняя ошибка сервера.
@@ -663,8 +665,9 @@ components:
                 type: string
                 example: 'Internal server error'
               details:
-                type: string
-                nullable: true
+                type:
+                  - string
+                  - 'null'
                 example: 'Database connection failed'
 
   schemas:
@@ -770,8 +773,9 @@ components:
         H1:
           type: string
         content:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
       required:
         - meta
         - H1
