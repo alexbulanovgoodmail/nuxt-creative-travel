@@ -1,0 +1,18 @@
+extends:
+  - recommended
+
+rules:
+  # Разрешаем trailing slash в путях (/api/layout/)
+  no-path-trailing-slash: off
+
+  # Публичное API — security не требуется
+  security-defined: off
+
+  # localhost допустим для разработки
+  no-server-example.com: off
+
+  # 4XX ответы добавим позже (пока не критично)
+  operation-4xx-response: off
+
+  # Допускаем неиспользуемые компоненты (заготовки)
+  no-unused-components: off

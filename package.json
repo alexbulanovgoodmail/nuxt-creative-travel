@@ -9,7 +9,8 @@
 		"generate": "nuxt generate",
 		"preview": "nuxt preview",
 		"postinstall": "nuxt prepare",
-		"lint": "eslint \"**/*.{js,ts,vue}\" && stylelint \"**/*.{css,scss,vue}\"",
+		"lint": "eslint \"**/*.{js,ts,vue}\" && stylelint \"**/*.{css,scss,vue}\" && npx @redocly/cli lint server/openapi.yaml",
+		"lint:openapi": "npx @redocly/cli lint server/openapi.yaml",
 		"lint:styles": "stylelint \"**/*.{css,scss,vue}\"",
 		"lint:styles:fix": "stylelint \"**/*.{css,scss,vue}\" --fix",
 		"lint:scripts": "eslint \"**/*.{js,ts,vue}\"",
@@ -61,6 +62,7 @@
 	"lint-staged": {
 		"*.{js,ts,vue}": "eslint --fix",
 		"*.{css,scss,vue}": "stylelint --fix",
-		"*.{js,ts,vue,css,scss,json,md}": "prettier --write"
+		"*.{js,ts,vue,css,scss,json,md}": "prettier --write",
+		"server/openapi.yaml": "npx @redocly/cli lint server/openapi.yaml"
 	}
 }

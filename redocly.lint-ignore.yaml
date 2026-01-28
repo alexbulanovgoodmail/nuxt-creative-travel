@@ -1,0 +1,24 @@
+rules:
+  # Разрешаем trailing slash в путях (/api/layout/)
+  no-path-trailing-slash:
+    - path: server/openapi.yaml
+
+  # Публичное API — security не указываем
+  security-defined:
+    - path: server/openapi.yaml
+
+  # Локальный сервер (localhost) допустим
+  no-server-example.com:
+    - path: server/openapi.yaml
+
+  # Пока не описываем 4XX ответы
+  operation-4xx-response:
+    - path: server/openapi.yaml
+
+  # Компоненты заготовлены, но ещё не используются
+  no-unused-components:
+    - path: server/openapi.yaml
+
+  # Лицензия будет добавлена позже
+  info-license:
+    - path: server/openapi.yaml
